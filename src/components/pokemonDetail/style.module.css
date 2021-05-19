@@ -1,0 +1,32 @@
+.container {
+    background-color: rgb(221 255 187);
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 0 50px;
+}
+
+.header > h1 {
+    text-transform: capitalize;
+    text-align: center;
+    width: 70%;
+    margin: auto;
+    padding: 50px 0;
+    color: #6eb0ca;
+    font-size: 3.5rem;
+}
+
+.mediaContainer {
+    width: 40%;
+}
+
+.pokedexDataHeader > h1 {
+    color: red;
+    text-align: center;
+}
+
+.pokedexData > p {
+    color: #505050;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    text-transform: capitalize;
+}
