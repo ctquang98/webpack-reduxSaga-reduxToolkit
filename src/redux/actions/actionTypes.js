@@ -1,3 +1,7 @@
+// pokemon
 export const ADD_POKEMON = 'ADD_POKEMON';
+export const FETCH_DATA = 'FETCH_DATA';
 
-export const FETCHING_DATA = 'FETCHING_DATA';
+// loading
+export const LOADING_POKEMON_DATA = 'LOADING_POKEMON_DATA';
+export const LOADING_POKEMON_DATA_DONE = 'LOADING_POKEMON_DATA_DONE';

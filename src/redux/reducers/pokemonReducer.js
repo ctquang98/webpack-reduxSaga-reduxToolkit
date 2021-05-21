@@ -4,7 +4,6 @@ const initialState = {
     pokemonList: [],
     limit: 20,
     offset: 0,
-    fetching: false
 };
 
 const pokemonReducer = (state = initialState, action) => {
@@ -14,12 +13,6 @@ const pokemonReducer = (state = initialState, action) => {
                 ...state,
                 pokemonList: [...state.pokemonList, ...action.payload],
                 offset: state.offset + state.limit,
-                fetching: false
-            }
-        case types.FETCHING_DATA:
-            return {
-                ...state,
-                fetching: true
             }
         default: return state;
     }

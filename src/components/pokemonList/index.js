@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PokemonItem from './pokemonItem';
-import { fetchPokemonData } from '../../redux/actions/pokemonAction';
+import { actFetchPokemonData } from '../../redux/actions/pokemonAction';
 import { Grid, CircularProgress, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -20,6 +20,7 @@ const useStyles = makeStyles({
 
 function PokemonList() {
     const pokemon = useSelector(state => state.pokemon);
+    const loading = useSelector(state => state.loading);
     const dispatch = useDispatch();
     const classes = useStyles();
 
@@ -34,7 +35,7 @@ function PokemonList() {
     }
 
     function handleLoadmorePokemon() {
-        dispatch(fetchPokemonData(pokemon.limit, pokemon.offset))
+        dispatch(actFetchPokemonData());
     }
 
     return (
@@ -51,9 +52,9 @@ function PokemonList() {
                         variant="contained"
                         color="secondary"
                         onClick={handleLoadmorePokemon}
-                        disabled={pokemon.fetching ? true : false}
+                        disabled={loading.pokemonData ? true : false}
                     >
-                        {pokemon.fetching ? <CircularProgress /> : null}
+                        {loading.pokemonData ? <CircularProgress /> : null}
                         Loadmore...
                     </Button>
                 </Grid>

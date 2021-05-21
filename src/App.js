@@ -1,19 +1,21 @@
 import './App.css';
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import PokemonList from './components/pokemonList';
 import SearchBar from './components/searchBar';
 import SearchPage from './components/searchPage';
 import PokemonDetail from './components/pokemonDetail';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { fetchPokemonData } from './redux/actions/pokemonAction';
+
+import { actFetchPokemonData } from './redux/actions/pokemonAction';
 
 function App() {
-  const pokemon = useSelector(state => state.pokemon);
+  // const pokemon = useSelector(state => state.pokemon);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPokemonData(pokemon.limit, pokemon.offset));
+    dispatch(actFetchPokemonData());
   }, []);
   
   return (
