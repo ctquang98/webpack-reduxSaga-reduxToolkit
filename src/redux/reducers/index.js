@@ -1,10 +1,17 @@
 import { combineReducers } from 'redux';
-import pokemonReducer from './pokemonReducer';
-import loadingReducer from './loadingReducer';
 
-const appReducers = combineReducers({
+// # redux
+// import pokemonReducer from './pokemonReducer';
+// import loadingReducer from './loadingReducer';
+
+// # redux toolkit
+import pokemonReducer from './pokemonSlice';
+import loadingReducer from './loadingSlice';
+
+
+const rootReducers = combineReducers({
     pokemon: pokemonReducer,
     loading: loadingReducer
 });
 
-export default appReducers;
+export default rootReducers;

@@ -8,14 +8,16 @@ import SearchBar from './components/searchBar';
 import SearchPage from './components/searchPage';
 import PokemonDetail from './components/pokemonDetail';
 
-import { actFetchPokemonData } from './redux/actions/pokemonAction';
+// import { actFetchPokemonData } from './redux/actions/pokemonAction';
+import { getPokemon } from './redux/reducers/pokemonSlice';
 
 function App() {
   // const pokemon = useSelector(state => state.pokemon);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actFetchPokemonData());
+    // dispatch(actFetchPokemonData());
+    dispatch(getPokemon({ testData: '123' }));
   }, []);
   
   return (
