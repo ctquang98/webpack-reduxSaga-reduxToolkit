@@ -16,4 +16,4 @@ const loadingSlice = createSlice({
 // dispatch(isLoading()) => return type: loading/isLoading
 export const { isLoading, isDone } = loadingSlice.actions;
 
-export default loadingSlice;
+export default loadingSlice.reducer;
