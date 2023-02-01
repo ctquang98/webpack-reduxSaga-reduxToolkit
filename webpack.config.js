@@ -1,5 +1,8 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer') || {};
+const TerserPlugin = require("terser-webpack-plugin");
+
 // const webpack = require('webpack');
 // const nodeExternals = require('webpack-node-externals'); // modules that should not be bundled.
 
@@ -17,10 +20,11 @@ const VENDOR_LIBS = [
 ]
 
 module.exports = {
-    mode: 'development',
+    mode: 'development', // production
     entry: {
         bundle: "./src/index.js", // => entry chunk
-        // vendor: VENDOR_LIBS
+        // vendor: VENDOR_LIBS,
+        test_split: "./TestSplitChunk"
     },
     output: {
         filename: "[name].[fullhash].js",
@@ -31,6 +35,7 @@ module.exports = {
         new HtmlWebpackPlugin({
           template: "./src/index.html",
         }),
+        new BundleAnalyzerPlugin()
         // use SourceMapDevToolPlugin for more configuration, set devtool: false
         // new webpack.SourceMapDevToolPlugin({}),
     ],
@@ -54,7 +59,8 @@ module.exports = {
         ]
     },
     optimization: {
-        // create new chunk contains un-change code (libraries) and share to another chunks
+        // create new chunk contains un-change code (libraries) and share to another ENTRY chunks
+        // if you are using only ONE entry, no need to split chunk
         splitChunks: {
             // include all types of chunks (async, non-async chunk)
             // chunks: 'all', 
@@ -65,14 +71,21 @@ module.exports = {
                 // shared between entry points
                 commons: { // => cache group
                     test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
+                    name: 'common_vendors',
                     chunks: 'all',
                     // If the current chunk contains modules already split out from the main bundle,
                     // it will be reused instead of a new one being generated
                     reuseExistingChunk: true,
-                }
+                },
+                // splitChunk: { // => didn't work
+                //     test: /[\\/]TestSplitChunk[\\/]/,
+                //     name: 'common_test_split_chunk',
+                //     chunks: 'all',
+                // }
             }
         },
+        minimize: true,
+        minimizer: [new TerserPlugin()],
     },
     devServer: {
         port: 3003
