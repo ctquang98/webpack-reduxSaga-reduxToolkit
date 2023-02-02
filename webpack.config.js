@@ -29,6 +29,7 @@ module.exports = {
     output: {
         filename: "[name].[fullhash].js",
         path: path.resolve(__dirname, "dist"),
+        publicPath: '/',
     },
     devtool: 'eval-source-map',
     plugins: [
@@ -88,6 +89,7 @@ module.exports = {
         minimizer: [new TerserPlugin()],
     },
     devServer: {
+        historyApiFallback: true,
         port: 3003
     },
     // externalsPresets: { node: true }, // in order to ignore built-in modules like path, fs, etc.
